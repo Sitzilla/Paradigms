@@ -4,15 +4,15 @@ import java.util.ArrayList;
  * Created by evan on 9/3/15.
  */
 public class Exam {
-    private int score;
+    private double score;
     private String letterGrade;
 
-    Exam(int score, String letterGrade) {
+    Exam(double score, String letterGrade) {
         this.score = checkScore(score);
         this.letterGrade = letterGrade;
     }
 
-    private int checkScore(int score) {
+    private double checkScore(double score) {
         if (score >=0 && score <= 100) {
             return score;
         } else if (score > 0) {
@@ -33,11 +33,11 @@ public class Exam {
         return "F";
     }
 
-    public int getScore() {
+    public double getScore() {
         return score;
     }
 
-    public void setScore(int score) {
+    public void setScore(double score) {
         this.score = score;
     }
 
