@@ -7,12 +7,7 @@ public class Exam {
     private double score;
     private String letterGrade;
 
-    Exam(double score, String letterGrade) {
-        this.score = checkScore(score);
-        this.letterGrade = letterGrade;
-    }
-
-    private double checkScore(double score) {
+    double checkScore(double score) {
         if (score >=0 && score <= 100) {
             return score;
         } else if (score > 0) {
@@ -29,7 +24,7 @@ public class Exam {
         legalGrades.add("F");
 
         if (legalGrades.contains(letterGrade)) { return letterGrade; }
-        System.out.println("Invalid grade entered... defaulting to 'F'");
+        System.out.println("You have submitted a bad grade for an Exam, value of:" + letterGrade + ".");
         return "F";
     }
 
@@ -38,6 +33,7 @@ public class Exam {
     }
 
     public void setScore(double score) {
+        score = checkScore(score);
         this.score = score;
     }
 
@@ -46,6 +42,7 @@ public class Exam {
     }
 
     public void setLetterGrade(String letterGrade) {
+        letterGrade = checkLetterGrade(letterGrade);
         this.letterGrade = letterGrade;
     }
 }

@@ -19,7 +19,10 @@ public class Coursework {
         return total / numberOfScores;
     }
 
-    public void addScore(int score) {
-        scores.add((double) score);
+    public void addScore(double score) {
+        Exam exam = new Exam();
+        score = exam.checkScore(score);
+        scores.add(score);
+        numberOfScores++;
     }
 }
