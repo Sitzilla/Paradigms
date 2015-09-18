@@ -6,8 +6,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseEvent;
 import javax.swing.Timer;
 
-class Controller implements MouseListener
-{
+class Controller implements MouseListener {
     Model model;
     View view;
 
@@ -17,8 +16,8 @@ class Controller implements MouseListener
         new Timer(50, view).start();
     }
 
-    public void update(Graphics g) {
-        model.update(g);
+    public void update(Graphics g, int width, int height) {
+        model.update(g, width, height);
     }
 
     public void mousePressed(MouseEvent e) {

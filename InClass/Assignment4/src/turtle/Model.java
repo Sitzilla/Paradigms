@@ -4,18 +4,16 @@ package turtle;
 import java.awt.Graphics;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
-class Model
-{
-    private ArrayList<Sprite> turtles;
-    private static int numberOfTurtles = 0;
+class Model {
+    private ArrayList<Sprite> sprites;
+    private int numberOfSprites = 0;
 
 
 
     Model() throws IOException {
-        turtles = new ArrayList<>();
+        sprites = new ArrayList<>();
     }
 
     public void createTurtle(int width, int height) {
@@ -23,19 +21,32 @@ class Model
         int randomHeight = ThreadLocalRandom.current().nextInt(1, height + 1);
 
         Turtle turtle = new Turtle(randomWidth, randomHeight);
-        turtles.add(turtle);
+        sprites.add(turtle);
     }
 
-    public void update(Graphics g) {
-        for (Sprite turtle : turtles) {
-            turtle.update(g);
+
+    private void createRazorback(int x, int y, int width, int height) {
+        Razorback razorback = new Razorback(x, y, width, height);
+        sprites.add(razorback);
+    }
+
+    public void update(Graphics g, int width, int height) {
+        for (Sprite sprite : sprites) {
+            sprite.update(g, width, height);
         }
     }
 
     public void setDestination(int x, int y, int width, int height) {
-        createTurtle(width, height);
-        for (Sprite turtle : turtles) {
-            turtle.setDest(x, y);
+        if (numberOfSprites % 2 == 0) {
+            createTurtle(width, height);
+        } else {
+            createRazorback(x, y, width, height);
+        }
+
+        numberOfSprites++;
+
+        for (Sprite sprite : sprites) {
+            sprite.setDest(x, y);
         }
     }
 }

@@ -6,23 +6,12 @@ import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;
 
-class Turtle extends Sprite
-{
-//    private int x;
-//    private int y;
-
-
+class Turtle extends Sprite {
     Turtle(int x, int y) {
-        super(x, y);
+        super(x, y, "turtle.png");
         image = getImage();
-//        try {
-//            // TODO NEED TO MODIFY THIS BEFORE SUBMITTING
-//            image = ImageIO.read(new File("/Users/evan/workspace/Paradigms/InClass/Assignment4/src/turtle/turtle.png"));
-//        } catch (IOException ioe) {
-//            System.out.println("Unable to load image file.");
-//        }
     }
-    
+
     public int getX() { return x; }
     public int getY() { return y; }
 
@@ -30,7 +19,7 @@ class Turtle extends Sprite
     public void setY(int yIn) { y = yIn; }
 
     @Override
-    public void update(Graphics g) {
+    public void update(Graphics g, int width, int height) {
         // Move the turtle
         if (x < dest_x) {
             x += 1;
@@ -45,6 +34,6 @@ class Turtle extends Sprite
         }
 
         // Draw the turtle
-        g.drawImage(image, x, y, 100, 100, null);
+        g.drawImage(image, x, y, 125, 125, null);
     }
 }

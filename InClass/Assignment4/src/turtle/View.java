@@ -18,7 +18,7 @@ public class View extends JFrame implements ActionListener {
         }
 
         public void paintComponent(Graphics g) {
-            controller.update(g);
+            controller.update(g, getWidth(), getHeight());
             revalidate();
         }
     }

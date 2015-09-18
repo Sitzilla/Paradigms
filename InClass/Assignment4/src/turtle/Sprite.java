@@ -14,24 +14,23 @@ public abstract class Sprite {
     protected int y;
     protected static int dest_x;
     protected static int dest_y;
-    private String fileName;
     protected Image image;
 
 
-    Sprite(int positionX, int positionY) {
-        this.x = positionX;
-        this.y = positionY;
+    Sprite(int x, int y, String fileName) {
+        this.x = x;
+        this.y = y;
 
         try {
             // TODO NEED TO MODIFY THIS BEFORE SUBMITTING
-            image = ImageIO.read(new File("/Users/evan/workspace/Paradigms/InClass/Assignment4/src/turtle/turtle.png"));
+            image = ImageIO.read(new File("/Users/evan/workspace/Paradigms/InClass/Assignment4/src/turtle/" + fileName));
         } catch (IOException ioe) {
             System.out.println("Unable to load image file.");
         }
 
     }
 
-    public void update(Graphics g) { }
+    public void update(Graphics g, int width, int height) { }
 
     public static void setDest(int x, int y) {
         dest_x = x;
