@@ -18,6 +18,8 @@ abstract class Sprite
     private int ySlope;
     private Image image;
     private static Random rand;
+    private boolean hit;
+    private int counter;
 
     public Sprite(int xIn, int yIn, int width, int height, String imagePath, int imageSize) {
         if (rand == null) {
@@ -29,8 +31,10 @@ abstract class Sprite
         y = yIn;
         w = width;
         h = height;
+        hit = false;
         xSlope = rand.nextInt(11) - 5;
         ySlope = rand.nextInt(11) - 5;
+        counter = 0;
     }
 
     public int getX() { return x; }
@@ -42,7 +46,7 @@ abstract class Sprite
     
     public void setImage(String imagePath) {
         try {
-            image = ImageIO.read(new File(imagePath));
+            image = ImageIO.read(new File("/Users/evan/workspace/Paradigms/InClass/Assignment5/src/" + imagePath));
         } catch (IOException ioe) {
             System.out.println("Unable to load image file.");
         }
@@ -50,10 +54,24 @@ abstract class Sprite
     public Image getImage() { return image; }
     
     public boolean overlaps(Sprite s) {
+        if (inRange(s)) {
+            return true;
+        }
         return false;
+    }
+
+    // TODO need to account for size here
+    public boolean inRange(Sprite s) {
+        return (x == s.getX()|| y == s.getY());
     }
     
     public void update(Graphics g) {
+        if (hit == true) {
+            counter++;
+
+
+        }
+
         g.drawImage(getImage(), x, y, getSize(), getSize(), null);
     }
     
@@ -67,6 +85,22 @@ abstract class Sprite
         if (y > h) y = 0;
         setX(x);
         setY(y);
+    }
+
+    public void hit() {
+        setImage("gravestone.jpg");
+        hit = true;
+    }
+
+    public boolean isHit(){
+        return hit;
+    }
+
+    public boolean shouldRemove() {
+        if (counter >= 20) {
+            return true;
+        }
+        return false;
     }
 
 }

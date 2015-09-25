@@ -1,6 +1,7 @@
 import java.awt.Graphics;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Random;
 
 class Model
@@ -30,6 +31,7 @@ class Model
                 sprites.add(new Opponent(newX, newY, width, height));
             }
         }
+        System.out.println("Done");
     }
 
     public void update(Graphics g) {
@@ -39,8 +41,47 @@ class Model
     }
 
     public void forward() {
-        for (Sprite s : sprites) {
-            s.move();
+        Iterator iter = sprites.iterator();
+        while (iter.hasNext()) {
+            Sprite sprite = (Sprite) iter.next();
+
+            if (sprite.isHit()) {
+                continue; }
+
+            if (sprite.shouldRemove()) {
+                sprites.remove(sprite);
+            }
+
+            sprite.move();
+
+            // TODO dont think this is hitting properly
+            for (Sprite otherSprite : sprites) {
+                if (sprite.overlaps(otherSprite)) {
+                    if (sprite instanceof Razorback && otherSprite instanceof Opponent) {
+                        otherSprite.hit();
+                    }
+                }
+
+            }
+
         }
+
+//        for (Sprite sprite : sprites) {
+//            if (sprite.isHit()) { continue; }
+//
+//            if (sprite.shouldRemove())
+//
+//            sprite.move();
+//
+//            // TODO dont think this is hitting properly
+//            for (Sprite otherSprite : sprites) {
+//                if (sprite.overlaps(otherSprite)) {
+//                    if (sprite instanceof Razorback && otherSprite instanceof Opponent) {
+//                        otherSprite.hit();
+//                    }
+//                }
+//
+//            }
+//        }
     }
 }
