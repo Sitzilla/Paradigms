@@ -1,6 +1,7 @@
 import java.awt.Graphics;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.Random;
 
@@ -41,16 +42,14 @@ class Model
     }
 
     public void forward() {
-        Iterator iter = sprites.iterator();
-        while (iter.hasNext()) {
-            Sprite sprite = (Sprite) iter.next();
-
-            if (sprite.isHit()) {
-                continue; }
-
+        try {
+        for (Sprite sprite : sprites) {
             if (sprite.shouldRemove()) {
                 sprites.remove(sprite);
             }
+
+            if (sprite.isHit()) {
+                continue; }
 
             sprite.move();
 
@@ -65,23 +64,8 @@ class Model
             }
 
         }
+        } catch (ConcurrentModificationException e) {
 
-//        for (Sprite sprite : sprites) {
-//            if (sprite.isHit()) { continue; }
-//
-//            if (sprite.shouldRemove())
-//
-//            sprite.move();
-//
-//            // TODO dont think this is hitting properly
-//            for (Sprite otherSprite : sprites) {
-//                if (sprite.overlaps(otherSprite)) {
-//                    if (sprite instanceof Razorback && otherSprite instanceof Opponent) {
-//                        otherSprite.hit();
-//                    }
-//                }
-//
-//            }
-//        }
+        }
     }
 }

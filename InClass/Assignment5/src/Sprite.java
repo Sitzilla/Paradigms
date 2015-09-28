@@ -68,8 +68,6 @@ abstract class Sprite
     public void update(Graphics g) {
         if (hit == true) {
             counter++;
-
-
         }
 
         g.drawImage(getImage(), x, y, getSize(), getSize(), null);
