@@ -57,14 +57,13 @@ class Model
 
             sprite.move();
 
-            // TODO dont think this is hitting properly
+            // check if there are overlap between two sprites of different types. if so set otherSprite to hit
             for (Sprite otherSprite : sprites) {
-                if (sprite.overlaps(otherSprite)) {
-                    if (sprite instanceof Razorback && otherSprite instanceof Opponent) {
+                if (sprite instanceof Razorback && otherSprite instanceof Opponent) {
+                    if (sprite.overlaps(otherSprite)) {
                         otherSprite.hit();
                     }
                 }
-
             }
 
         }

@@ -54,15 +54,31 @@ abstract class Sprite
     public Image getImage() { return image; }
     
     public boolean overlaps(Sprite s) {
-        if (inRange(s)) {
+        if (this == s) { return false; }
+
+        if (isInRange(s)) {
             return true;
         }
         return false;
     }
 
     // TODO need to account for size here
-    public boolean inRange(Sprite s) {
-        return (x == s.getX()|| y == s.getY());
+    public boolean isInRange(Sprite s) {
+        int x1Max = x + (size / 2);
+        int x1Min = x - (size / 2);
+        int x2Max = s.getX() + (s.getSize() / 2);
+        int x2Min = s.getX() - (s.getSize() / 2);
+
+        int y1Max = y + (size / 2);
+        int y1Min = y - (size / 2);
+        int y2Max = s.getY() + (s.getSize() / 2);
+        int y2Min = s.getY() - (s.getSize() / 2);
+
+        if (((x1Max >= x2Min) && (x1Min <= x2Max)) && ((y1Max >= y2Min) && (y1Min <= y2Max))) {
+            return true;
+        }
+
+        return false;
     }
     
     public void update(Graphics g) {
