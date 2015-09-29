@@ -12,6 +12,7 @@ public class View extends JFrame {
             addMouseListener(c);
         }
 
+
         public void paintComponent(Graphics g) {
             controller.update(g);
             revalidate();
@@ -19,8 +20,11 @@ public class View extends JFrame {
     }
 
 
+
+
     public View(Controller c) throws Exception{
         controller = c;
+        addKeyListener(controller);
         setTitle("Assignment 4");
         setSize(1200, 800);
         getContentPane().add(new MyPanel(c));

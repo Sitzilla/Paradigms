@@ -7,7 +7,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 
-class Controller implements MouseListener
+class Controller implements MouseListener, KeyListener
 {
     private Model model;
     private View view;
@@ -34,12 +34,35 @@ class Controller implements MouseListener
     public void mouseExited(MouseEvent e) {    }
     public void mouseClicked(MouseEvent e) {    }
 
+
     public static void main(String[] args) throws Exception {
         //  Use the following line to determine which directory your program
         //  is being executed from, since that is where the image files will
         //  need to be.
         //System.out.println("cwd=" + System.getProperty("user.dir"));
         new Controller();
+    }
+
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        char letter = e.getKeyChar();
+
+        if (letter == 'r') {
+            model.initialize();
+            view.repaint();
+        }
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
     }
 }
 

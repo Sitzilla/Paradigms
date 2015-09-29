@@ -23,6 +23,10 @@ class Model
     public ArrayList<Sprite> getSpriteList() { return sprites; }
     
     public void initialize() {
+
+        // clears out any sprites if any exist
+        sprites.clear();
+
         for (int i=0; i<50; i++) {
             int newX = r.nextInt(width-50);
             int newY = r.nextInt(height-50);
