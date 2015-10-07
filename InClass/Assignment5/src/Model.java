@@ -41,32 +41,32 @@ class Model
 
     public void update(Graphics g) {
         for (Sprite sprite : sprites) {
-            sprite.update(g);
+                sprite.update(g);
         }
     }
 
     public void forward() {
         try {
-        for (Sprite sprite : sprites) {
-            if (sprite.shouldRemove()) {
-                sprites.remove(sprite);
-            }
+            for (Sprite sprite : sprites) {
+                if (sprite.shouldRemove()) {
+                    sprites.remove(sprite);
+                }
 
-            if (sprite.isHit()) {
-                continue; }
+                if (sprite.isHit()) {
+                    continue; }
 
-            sprite.move();
+                sprite.move();
 
-            // check if there are overlap between two sprites of different types. if so set otherSprite to hit
-            for (Sprite otherSprite : sprites) {
-                if (sprite instanceof Razorback && otherSprite instanceof Opponent) {
-                    if (sprite.overlaps(otherSprite)) {
-                        otherSprite.hit();
+                // check if there are overlap between two sprites of different types. if so set otherSprite to hit
+                for (Sprite otherSprite : sprites) {
+                    if (sprite instanceof Razorback && otherSprite instanceof Opponent) {
+                        if (sprite.overlaps(otherSprite)) {
+                            otherSprite.hit();
+                        }
                     }
                 }
-            }
 
-        }
+            }
         } catch (ConcurrentModificationException e) {
 
         }

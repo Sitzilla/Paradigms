@@ -1,5 +1,3 @@
-
-
 import java.awt.Graphics;
 import java.io.IOException;
 import java.awt.event.KeyEvent;
@@ -22,8 +20,18 @@ class Controller implements MouseListener, KeyListener
             model.update(g);
         }
     }
+
+    public void start() throws Exception {
+        SpriteMover spriteMover = new SpriteMover(this, view);
+        Thread thread = new Thread(spriteMover);
+        thread.start();
+    }
     
     public Model getModel() { return model; }
+
+    public void forwardSprites() {
+        model.forward();
+    }
 
     public void mousePressed(MouseEvent e) {
         model.forward();
@@ -56,6 +64,11 @@ class Controller implements MouseListener, KeyListener
         if (letter == 'r') {
             model.initialize();
             view.repaint();
+        } else if (letter == 's'){
+            try {
+                start();
+            } catch (Exception e1) {
+            }
         }
 
     }
