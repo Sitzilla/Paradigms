@@ -1,12 +1,51 @@
 <!DOCTYPE html>
 
 <html>
+    <head>
+        <style>
+            body {background-color:lightgray}
+            h1   {color:blue}
+            p    {color:green}
 
-    <style>
-    body {background-color:lightgray}
-    h1   {color:blue}
-    p    {color:green}
-    </style>
+            table.visible {
+                visibility: visible
+            }
+
+            table.hidden {
+                visibility: hidden
+            }
+        </style>
+
+        <script>
+            var showingText = false;
+            function toggleText() {
+                if (showingText == false) {
+                    document.getElementById(id="toggleFirst").innerHTML = "Hi my name is Evan! I was born and raised in Arkansas, but I have lived in Japan and can actually speak 3 Asian languages (to varying degrees of ability).";
+                    document.getElementById(id="toggleFirstTitle").innerHTML = document.getElementById(id="toggleFirstTitle").innerHTML.replace("see", "hide");
+                    showingText = true;
+                } else {
+                    document.getElementById(id="toggleFirst").innerHTML = "";
+                    document.getElementById(id="toggleFirstTitle").innerHTML = document.getElementById(id="toggleFirstTitle").innerHTML.replace("hide", "see");
+                    showingText = false;
+                }
+            }
+
+            var showingTable = false;
+            function toggleTable() {
+                if (showingTable == false) {
+                    document.getElementById(id="toggleSecond").className = "visible";
+                    document.getElementById(id="toggleSecondTitle").innerHTML = document.getElementById(id="toggleSecondTitle").innerHTML.replace("see", "hide");
+                    showingTable = true;
+                } else {
+                    document.getElementById(id="toggleSecond").className = "hidden";
+                    document.getElementById(id="toggleSecondTitle").innerHTML = document.getElementById(id="toggleSecondTitle").innerHTML.replace("hide", "see");
+                    showingTable = false;
+                }
+            }
+        </script>
+
+    </head>
+    
 
     <title>About Evan</title>
     <body>
@@ -15,16 +54,27 @@
 
         <img src="Grand_canyon.jpg" alt="Canyon View" style="width:304px;height:228px;">
 
-        <!-- <p id="toggle">lorem ipsum text</p> -->
-        <p onclick="toggleText()">Please push <button onclick="toggleText()">this</button> to see more information about me.</p>
-        <p id="toggle"></p>
+        <p id="toggleFirstTitle">Please push <button onclick="toggleText()">this</button> to see more information about me.</p>
+        <p id="toggleFirst"></p>
 
-        <script>
-            function toggleText() {
-                document.getElementById(id="toggle").innerHTML = "Hello World";
-            }
-            
-        </script>
+        <p id="toggleSecondTitle">Please push <button onclick="toggleTable()">this</button> to see my list of courses.</p>
+
+        <table border="1" style="width:30%" class="hidden" id="toggleSecond">
+          <tr>
+            <td>Paradigms</td>
+            <td>TuTh, 11:00-12:15</td>
+          </tr>
+          <tr>
+            <td>Intro To Algorithms</td> 
+            <td>MWF, 13:00-14:00</td> 
+          </tr>
+          <tr>
+            <td>Japanese</td>
+            <td>F, 9:00-11:00</td>
+          </tr>
+        </table>
+
+        
 
     </body>
 </html>
