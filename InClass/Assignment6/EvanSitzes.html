@@ -42,6 +42,19 @@
                     showingTable = false;
                 }
             }
+
+            var firstPic = true;
+            function togglePicture() {
+                if (firstPic == true) {
+                    document.getElementById(id="profilePic").src = "Wedding_pic.jpg";
+                    document.getElementById(id="profilePic").style.width = "380px";
+                    firstPic = false;
+                } else {
+                    document.getElementById(id="profilePic").src = "Grand_canyon.jpg";
+                    document.getElementById(id="profilePic").style.width = "320px";
+                    firstPic = true;
+                }
+            }
         </script>
 
     </head>
@@ -52,7 +65,9 @@
 
         <h1>Evan Sitzes's Page</h1>
 
-        <img src="Grand_canyon.jpg" alt="Canyon View" style="width:304px;height:228px;">
+        <p>This page is only a short description of myself.  For a  full description press <a href="http://www.evansitzes.com/" target="_blank">here</a></p>
+
+        <img onclick="togglePicture()" id="profilePic" src="Grand_canyon.jpg" alt="Loading..." style="width:320px;height:228px;">
 
         <p id="toggleFirstTitle">Please push <button onclick="toggleText()">this</button> to see more information about me.</p>
         <p id="toggleFirst"></p>
