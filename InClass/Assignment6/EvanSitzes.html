@@ -20,7 +20,7 @@
             var showingText = false;
             function toggleText() {
                 if (showingText == false) {
-                    document.getElementById(id="toggleFirst").innerHTML = "Hi my name is Evan! I was born and raised in Arkansas, but I have lived in Japan and can actually speak 3 Asian languages (to varying degrees of ability).";
+                    document.getElementById(id="toggleFirst").innerHTML = "Hi my name is Evan! I was born and raised in Arkansas, but I have lived in Japan and can actually speak 3 Asian languages (to varying degrees of ability).  I also work for a small tech startup in the Fayetteville area, and currently have several side projects to learn about various technologies, such as Hadoop, REST APIs, and web crawling.";
                     document.getElementById(id="toggleFirstTitle").innerHTML = document.getElementById(id="toggleFirstTitle").innerHTML.replace("see", "hide");
                     showingText = true;
                 } else {
@@ -60,17 +60,17 @@
     </head>
     
 
-    <title>About Evan</title>
+    <title>Evan Sitzes's Page</title>
     <body>
 
         <h1>Evan Sitzes's Page</h1>
 
-        <p>This page is only a short description of myself.  For a  full description press <a href="http://www.evansitzes.com/" target="_blank">here</a></p>
+        <p style="width:40%">This page is only a short description of myself.  It is not that descriptive of a bio.  For information about me visit my personal website at <a href="http://www.evansitzes.com/" target="_blank">evansitzes.com</a>. It was created using Ruby on Rails... an awesome web framework!</p>
 
         <img onclick="togglePicture()" id="profilePic" src="Grand_canyon.jpg" alt="Loading..." style="width:320px;height:228px;">
 
         <p id="toggleFirstTitle">Please push <button onclick="toggleText()">this</button> to see more information about me.</p>
-        <p id="toggleFirst"></p>
+        <p id="toggleFirst" style="width:30%"></p>
 
         <p id="toggleSecondTitle">Please push <button onclick="toggleTable()">this</button> to see my list of courses.</p>
 
