@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <style>
+            body {background-color:lightgray}
+            h1   {color:blue}
+            p    {color:green}
+
+            table.visible {
+                visibility: visible
+            }
+
+            table.hidden {
+                visibility: hidden
+            }
+        </style>
+
+        <script>
+            var showingText = false;
+            function toggleText() {
+                if (showingText == false) {
+                    document.getElementById(id="toggleFirst").innerHTML = "Hi my name is Evan! I was born and raised in Arkansas, but I have lived in Japan and can actually speak 3 Asian languages (to varying degrees of ability).  I also work for a small tech startup in the Fayetteville area, and currently have several side projects to learn about various technologies, such as Hadoop, REST APIs, and web crawling.";
+                    document.getElementById(id="toggleFirstTitle").innerHTML = document.getElementById(id="toggleFirstTitle").innerHTML.replace("see", "hide");
+                    showingText = true;
+                } else {
+                    document.getElementById(id="toggleFirst").innerHTML = "";
+                    document.getElementById(id="toggleFirstTitle").innerHTML = document.getElementById(id="toggleFirstTitle").innerHTML.replace("hide", "see");
+                    showingText = false;
+                }
+            }
+
+            function calculateGrade() {
+                alert("Hello! I am an alert box!!");
+                return false;
+            }
+
+        </script>
+
+    </head>
+    
+
+    <title>Evan Sitzes's Assignment 7</title>
+    <body>
+
+        <h1>Evan Sitzes's Assignment 7</h1>
+
+        <form  onsubmit="return calculateGrade()">
+            First name: <input type="text" name="firstName" value="Dr.">
+            <br>
+            Last name: <input type="text" name="lastName" value="Who">
+            <br>
+            Homework Scores: <input type="text" name="homeworkScores" value="93, 98, 42">
+            <br>
+            Activity Scores: <input type="text" name="activityScores" value="89, 76, 100, 95">
+            <br>
+            Midterm Percentage: <input type="text" name="midtermPercent" value="85">
+            <br>
+            Midterm Letter Grade: <input type="text" name="midtermGrade" value="B">
+            <br>
+            Final Percentage: <input type="text" name="finalPercent" value="89">
+            <br>
+            Final Letter Grade: <input type="text" name="finalGrade" value="B">
+            <br><br>
+            <input type="submit" value="Submit">
+
+
+        </form>
+
+        
+
+    </body>
+</html>
