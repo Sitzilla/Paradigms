@@ -5,19 +5,13 @@
         <style>
             body {background-color:lightgray}
             h1   {color:blue}
+
+            form.hidden {
+                display: none
+            }
         </style>
 
         <script>
-            function calculateGrade() {
-                var student = new Student("Evan", "Sitzes");
-                student.addGradedActivity(86);
-                student.addGradedHomework(82);
-                student.setFinal(90, "A");
-                student.setMidterm(85, "B");
-                student.printGrade();
-                return false;
-            }
-
             function Coursework() {
                 var scores = [];
                 var numberOfScores = 0;
@@ -29,7 +23,7 @@
 
                     var i;
                     for (i = 0; i < scores.length; i++) {
-                        total   += scores[i];
+                        total += scores[i];
                     }
                     return total / numberOfScores;
                 };
@@ -103,8 +97,6 @@
                 this.setFinal = function (score, grade) {
                     finalExam.setScore(score);
                     finalExam.setLetterGrade(grade);
-                    // alert(firstName + " " + lastName);
-
                 }
 
                 this.addGradedHomework = function (score) {
@@ -113,20 +105,18 @@
 
                 this.addGradedActivity = function (score) {
                     inClassWork.addScore(score);
-                    // alert(firstName + " " + lastName);
                 }
 
-                this.printGrade = function () {
-                    // DecimalFormat df = new DecimalFormat("#.00");
+                this.getGrade = function () {
                     var numberGrade = this.calculateNumberGrade();
                     var letterGrade = this.calculateLetterGrate(numberGrade);
 
                     // grade adjustment per professor's specifications
                     letterGrade = this.examWeightedAdjustment(letterGrade);
 
-                    alert("Final course grade for " +
+                    return "Final course grade for " +
                                         firstName + " " + lastName + ": " +
-                                        letterGrade + ", " + numberGrade + "%");
+                                        letterGrade + ", " + numberGrade.toFixed(2) + "%";
 
                 }
 
@@ -163,6 +153,29 @@
                 }
             }
 
+            function calculateGrade() {
+                var student = new Student(myForm.elements["firstName"].value, myForm.elements["lastName"].value);
+
+                var partsOfStr = myForm.elements["activityScores"].value.split(',');
+                var i;
+                for (i = 0; i < partsOfStr.length; i++) {
+                    student.addGradedActivity(Number(partsOfStr[i]));
+                }
+
+                partsOfStr = myForm.elements["homeworkScores"].value.split(',');
+                var i;
+                for (i = 0; i < partsOfStr.length; i++) {
+                    student.addGradedHomework(Number(partsOfStr[i]));
+                }
+
+                student.setFinal(myForm.elements["finalPercent"].value, myForm.elements["finalGrade"].value);
+                student.setMidterm(myForm.elements["midtermPercent"].value, myForm.elements["midtermGrade"].value);
+
+                document.getElementById(id="myForm").className = "hidden";
+                document.getElementById(id="score").innerHTML = student.getGrade();
+
+                return false;
+            }
 
         </script>
 
@@ -174,7 +187,7 @@
 
         <h1>Evan Sitzes's Assignment 7</h1>
 
-        <form  onsubmit="return calculateGrade()">
+        <form  onsubmit="return calculateGrade()" name="myForm" id="myForm">
             First name: <input type="text" name="firstName" value="Dr.">
             <br>
             Last name: <input type="text" name="lastName" value="Who">
@@ -193,8 +206,9 @@
             <br><br>
             <input type="submit" value="Submit">
 
-
         </form>
+
+        <p id="score"></p>
 
         
 
