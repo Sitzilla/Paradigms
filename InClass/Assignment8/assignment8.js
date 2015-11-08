@@ -38,6 +38,7 @@ function recSum(n) {
 }
 
 function findMin(a) {
+
 	//  Write the body of findMin so that it takes a single argument
 	//  which is an array of integers (whose length can be assumed
 	//  to be at least 1). findMin should return the smallest integer
@@ -50,9 +51,22 @@ function findMin(a) {
 	//  the recursive function) and it must not use more than one parameter.
 	//  See http://www.w3schools.com/jsref/jsref_obj_array.asp for useful
 	//  array functions in JavaScript.
+
+	if (a.length == 1) {
+		return a;
+	}
+
+	if (a[0] > a[1]) {
+		a.splice(0, 1);
+	} else {
+		a.splice(1, 1);
+	}
+
+	return findMin(a);
 }
 
 function reverseString(s) {
+
 	//  Write the body of reverseString so that it takes a single arugment
 	//  which is a string (which may be the empty string), and returns
 	//  a string which is the reverse of the input string.
@@ -64,6 +78,13 @@ function reverseString(s) {
 	//  the recursive function) and it must not use more than one parameter.
 	//  See http://www.w3schools.com/jsref/jsref_obj_string.asp for useful
 	//  string functions in JavaScript.
+
+	if (s.length == 1) {
+		return s;
+	}
+
+	return reverseString(s.substr(1, s.length - 1)) + s.charAt(0);
+
 }
 
 
