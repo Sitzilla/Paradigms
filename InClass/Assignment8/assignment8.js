@@ -143,7 +143,6 @@ function getMax(f1, f2) {
 	}
 
 	return max;
-
 }
 
 
@@ -165,6 +164,16 @@ function makeClosure(f) {
 	//  argument and, if and only if its value is greater than max, sets max
 	//  equal to that value.  f1 should take no arguments and return the result
 	//  of calling f with max as its argument.
+
+	var max = 0;
+
+	var f1 = function(int) {
+		max = Math.max(max, int);
+	}
+
+	var f2 = function() {
+		return f(max);
+	}
 	//
 	//  Examples:  var closure = makeClosure(add2);
 	//	console.log(closure[1]());  // max = 0, output = 2
@@ -174,6 +183,9 @@ function makeClosure(f) {
 	//	console.log(closure[1]());	// max = 3, output = 5
 	//	closure[0](10);				// max = 10;
 	//	console.log(closure[1]());	// max = 10; output = 12;
+
+
+	return [f1, f2];
 }
 
 
