@@ -79,7 +79,7 @@ function reverseString(s) {
 	//  See http://www.w3schools.com/jsref/jsref_obj_string.asp for useful
 	//  string functions in JavaScript.
 
-	if (s.length == 1) {
+	if (!s || s.length == 1) {
 		return s;
 	}
 
@@ -110,9 +110,21 @@ function applyToArray(a) {
 	//  returns [3,4,5,6], if var fx = applyToArray([10,-20,8,0]),
 	//  fx(mult4) returns [40,-80,32,0], and if var fx = applyToArray([]),
 	//  fx(add2) returns [] 
+
+	var forEach = function (f) {
+		var i;
+		for (i = 0; i < a.length; i++) {
+			a[i] = f(a[i]);
+		}
+		return a;
+	};
+
+	return forEach;
+
 }
 
 function getMax(f1, f2) {
+
 	//  Write the body of getMax so that it takes two functions as arguments
 	//  and returns a new function.
 	//
@@ -125,6 +137,13 @@ function getMax(f1, f2) {
 	//  Examples: Given the definitions of add2 and mult4 at the bottom of
 	//  this page, if var fx = getMax(mult4,square), then fx(2) = 8,
 	//  fx(3) = 12, fx(4) = 16, and fx(5) = 25.
+
+	var max = function (i) {
+		return Math.max(f1(i), f2(i));
+	}
+
+	return max;
+
 }
 
 
